@@ -18,6 +18,10 @@ transform:rotate(360deg);
   border-radius:0px;
 }`;
 
+const Eimoji = styled.span`
+	font-size: 30px;
+`;
+
 const Box = styled.div`
 	height: 200px;
 	width: 200px;
@@ -26,8 +30,10 @@ const Box = styled.div`
 	justify-content: center;
 	align-items: center;
 	animation: ${animation} 1s linear infinite;
-	span {
-		font-size: 40px;
+	${Eimoji} {
+		&:hover {
+			font-size: 48px;
+		}
 	}
 `;
 
@@ -35,8 +41,9 @@ function App() {
 	return (
 		<Wrapper>
 			<Box>
-				<span>🥰</span>
+				<Eimoji>🥰</Eimoji>
 			</Box>
+			<Eimoji>Hello</Eimoji>
 		</Wrapper>
 	);
 }

@@ -1,50 +1,28 @@
-import React from "react";
-import styled, {keyframes} from "styled-components";
-
-const Wrapper = styled.div`
-	display: flex;
-`;
-
-const animation = keyframes`
-0%{
-  transform:rotate(0deg);
-  border-radius:0px;
-}
- 50% {
-  border-radius:100px;
-}
-100%{
-transform:rotate(360deg);
-  border-radius:0px;
-}`;
-
-const Eimoji = styled.span`
-	font-size: 30px;
-`;
-
-const Box = styled.div`
-	height: 200px;
-	width: 200px;
-	background-color: tomato;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	animation: ${animation} 1s linear infinite;
-	${Eimoji} {
-		&:hover {
-			font-size: 48px;
-		}
-	}
-`;
+import React, {useState} from "react";
 
 function App() {
+	const [value, setValue] = useState("");
+	const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+		console.log(e.currentTarget.value);
+		const {
+			currentTarget: {value},
+		} = e;
+		setValue(value);
+	};
+
+	const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		// console.log(event);
+		console.log("안녕하세요", value);
+		event.preventDefault();
+	};
+
 	return (
-		<Wrapper>
-			<Box>
-				<Eimoji>🥰</Eimoji>
-			</Box>
-			<Eimoji>Hello</Eimoji>
-		</Wrapper>
+		<div>
+			<form onSubmit={onSubmit}>
+				<input value={value} onChange={onChange} type="text" placeholder="username" />
+				<button>Log in</button>
+			</form>
+		</div>
 	);
 }
 
